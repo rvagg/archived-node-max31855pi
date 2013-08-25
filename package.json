@@ -1,0 +1,19 @@
+{
+  "name": "max31855pi",
+  "version": "0.0.0",
+  "description": "Raspberry Pi driver for the MAX31855 thermocouple amplifier",
+  "main": "max31855pi.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rvagg/node-max31855pi.git"
+  },
+  "homepage": "https://github.com/rvagg/node-max31855pi",
+  "authors": [
+    "Rod Vagg <rod@vagg.org> (https://github.com/rvagg)"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "nan": "~0.3.1",
+    "bindings": "~1.1.1"
+  }
+}
