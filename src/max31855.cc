@@ -1,11 +1,8 @@
 #include "bcm2835.h"
 #include "max31855.h"
 
-MAX31855::MAX31855 (
-      int sckPin = MAX31855_DEFAULT_SCKPIN
-    , int csPin  = MAX31855_DEFAULT_CSPIN
-    , int soPin  = MAX31855_DEFAULT_SOPIN
-  ) : sckPin(sckPin), csPin(csPin), soPin(soPin) {
+MAX31855::MAX31855 (int sckPin, int csPin, int soPin)
+    : sckPin(sckPin), csPin(csPin), soPin(soPin) {
 
   if (!bcm2835_init())
     throw "Error initialising bcm2835";

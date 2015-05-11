@@ -35,7 +35,7 @@ NAN_METHOD(NodeMAX31855::ReadCelsius) {
 
   double temp = nodeMAX31855->max31855->ReadCelsius();
 
-  NanReturnValue(v8::Number::New(temp));
+  NanReturnValue(NanNew<v8::Number>(temp));
 }
 
 NAN_METHOD(NodeMAX31855::Create) {
@@ -48,20 +48,20 @@ NAN_METHOD(NodeMAX31855::Create) {
   if (args.Length() > 0 && args[0]->IsNumber())
     sckPin = v8::Local<v8::Integer>::Cast(args[0]);
   else
-    sckPin = v8::Integer::New(MAX31855_DEFAULT_SCKPIN);
+    sckPin = NanNew<v8::Integer>(MAX31855_DEFAULT_SCKPIN);
 
   if (args.Length() > 1 && args[1]->IsNumber())
     csPin = v8::Local<v8::Integer>::Cast(args[1]);
   else
-    csPin = v8::Integer::New(MAX31855_DEFAULT_CSPIN);
+    csPin = NanNew<v8::Integer>(MAX31855_DEFAULT_CSPIN);
 
   if (args.Length() > 2 && args[2]->IsNumber())
     soPin = v8::Local<v8::Integer>::Cast(args[1]);
   else
-    soPin = v8::Integer::New(MAX31855_DEFAULT_SOPIN);
+    soPin = NanNew<v8::Integer>(MAX31855_DEFAULT_SOPIN);
 
   v8::Local<v8::FunctionTemplate> constructorHandle =
-      NanPersistentToLocal(nodeMAX31855Constructor);
+      NanNew(nodeMAX31855Constructor);
 
   v8::Handle<v8::Value> argv[] = { sckPin, csPin, soPin };
 
@@ -72,15 +72,15 @@ NAN_METHOD(NodeMAX31855::Create) {
 }
 
 void Init (v8::Handle<v8::Object> exports, v8::Handle<v8::Object> module) {
-  v8::Local<v8::FunctionTemplate> tpl = v8::FunctionTemplate::New(NodeMAX31855::New);
-  NanAssignPersistent(v8::FunctionTemplate, nodeMAX31855Constructor, tpl);
-  tpl->SetClassName(NanSymbol("NodeMAX31855"));
+  v8::Local<v8::FunctionTemplate> tpl = NanNew<v8::FunctionTemplate>(NodeMAX31855::New);
+  NanAssignPersistent(nodeMAX31855Constructor, tpl);
+  tpl->SetClassName(NanNew("NodeMAX31855"));
   tpl->InstanceTemplate()->SetInternalFieldCount(1);
   NODE_SET_PROTOTYPE_METHOD(tpl, "readCelsius", NodeMAX31855::ReadCelsius);
 
   v8::Local<v8::Function> create =
-      v8::FunctionTemplate::New(NodeMAX31855::Create)->GetFunction();
-  module->Set(NanSymbol("exports"), create);
+      NanNew<v8::FunctionTemplate>(NodeMAX31855::Create)->GetFunction();
+  module->Set(NanNew("exports"), create);
 }
 
 NODE_MODULE(max31855pi, Init)

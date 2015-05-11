@@ -9,7 +9,11 @@
 
 class MAX31855 {
 public:
-  MAX31855 (int sckPin, int csPin, int soPin);
+  MAX31855 (
+      int sckPin = MAX31855_DEFAULT_SCKPIN
+    , int csPin  = MAX31855_DEFAULT_CSPIN
+    , int soPin  = MAX31855_DEFAULT_SOPIN
+  );
   ~MAX31855 ();
 
   double ReadCelsius ();
