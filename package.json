@@ -1,6 +1,6 @@
 {
   "name": "max31855pi",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Raspberry Pi driver for the MAX31855 thermocouple amplifier",
   "main": "max31855pi.js",
   "repository": {
